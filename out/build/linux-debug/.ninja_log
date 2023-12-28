@@ -1,0 +1,6 @@
+# ninja log v5
+1	8	1703726314818242697	CMakeFiles/Dumbo.dir/Position.cpp.o	ad74d68bfafd9515
+1	277	1703726315088242666	CMakeFiles/Dumbo.dir/dumbo.cpp.o	a01fda2e43aea284
+302	434	1703774776193381501	Dumbo	e5c79a74e8e7f669
+1	2	0	clean	a31eedcededa8236
+1	302	1703774776063381520	CMakeFiles/Dumbo.dir/main.cpp.o	1e11359dc6d96ce9
