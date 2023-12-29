@@ -31,6 +31,12 @@ public:
 
     void initBoard()
     {
+        for (int rank = 0; rank < 10; ++rank) {
+            for (int file = 0; file < 9; ++file) {
+                board[rank][file].piece = nullptr;
+            }
+        }
+
         // Adding red pieces
         add_piece(new Piece{ PieceType::Chariot, Color::Red }, 0, 0);
         add_piece(new Piece{ PieceType::Chariot, Color::Red }, 8, 0);
@@ -133,7 +139,11 @@ public:
     void generate_advisor_moves(int file, int rank, std::vector<std::pair<int, int>>& moves) const {
         int directions[4][2] = { {-1, -1}, {1, 1}, {1, -1}, {-1, 1} };
         for (const auto& dir : directions) {
-            add_move(file + dir[0], rank + dir[1], moves);
+            Piece* piece = board[rank][file].piece;
+            if ((file + dir[0] >= 0 && file + dir[0] <= 2) && rank + dir[1] >= 3 && rank + dir[1] <= 5 && piece->color == Color::Red)
+                add_move(file + dir[0], rank + dir[1], moves);
+            if ((file + dir[0] >= 7 && file + dir[0] <= 9) && rank + dir[1] >= 3 && rank + dir[1] <= 5 && piece->color == Color::Black)
+                add_move(file + dir[0], rank + dir[1], moves);
         }
     }
 

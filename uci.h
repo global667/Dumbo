@@ -33,9 +33,11 @@ public:
                 if (input.length() <= 24)
                     continue;
                 handleStartposCommand(input.substr(24, input.length()));
+
             } else if (input == "go") {
                 handleGoCommand();
                 print_board();
+
             } else if (input == "quit") {
                 handleQuitCommand();
                 break;
@@ -98,9 +100,10 @@ private:
         int rank_from = from[1] - '0';
         int file_to = to[0] - 'a';
         int rank_to = to[1] - '0';
-        std::cout << "info " << file_from << rank_from << std::endl;
-        position.add_piece(position.board[file_from][rank_from].piece, file_to, rank_to);
-        position.board[file_from][rank_from].piece = nullptr;
+        std::cout << "info " << file_from << rank_from << file_to << rank_to << std::endl;
+        position.add_piece(position.board[rank_from][file_from].piece, file_to, rank_to);
+        position.board[rank_from][file_from].piece = nullptr;
+
     }
 
     std::string make_bestmove()
@@ -145,12 +148,12 @@ private:
 
     void print_board()
     {
-        for (std::size_t file = 0; file < 9; file++) {
-            for (std::size_t rank = 0; rank < 10; rank++) {
-                if (position.board[rank][file].piece == nullptr)
+        for (std::size_t file = 0; file < 10; file++) {
+            for (std::size_t rank = 0; rank < 9; rank++) {
+                if (position.board[file][rank].piece == nullptr)
                     std::cout << " 0 ";
                 else
-                    switch (position.board[rank][file].piece->piece_type) {
+                    switch (position.board[file][rank].piece->piece_type) {
                     case PieceType::Advisor:
                         std::cout << " A ";
                         break;
@@ -177,6 +180,7 @@ private:
                     }
             }
             std::cout << std::endl;
-        }
+        }            
+        std::cout << std::endl;
     }
 };
