@@ -132,6 +132,16 @@ private:
             }
         }
 
+        // Check and checkmate rules
+        if (position.is_check(players_color)) {
+            std::cout << "Check!" << std::endl;
+        }
+
+        if (position.is_checkmate(players_color)) {
+            std::cout << "Checkmate!" << std::endl;
+        }
+
+
         // select one valid move randomly
         int move = rand() % all_moves_from.size();
 
